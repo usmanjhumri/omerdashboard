@@ -16,6 +16,7 @@ import { Modal, message } from "antd";
 import { Button, Dropdown, Select, Menu } from "antd";
 import { useSelector } from "react-redux";
 import Popup from "../modals/Popup";
+import { Box } from "@material-ui/core";
 const { Option } = Select;
 const Purchase = () => {
   const { user, access_token } = useSelector(authSelector);
@@ -448,660 +449,661 @@ const Purchase = () => {
     );
   };
   return (
-    <div className="flex  bg-black main">
-      {/* <SideBar /> */}
-      <div className="h-full  flex flex-col content-center  w-80">
-        {/* <Header /> */}
-        <div className="meterTableMain ml-10 mt-5 mr-10">
-          {contextHolder}
-          <div className="bg-blue-500 headingBox pt-2 flex justify-between">
-            <h3 className=" text-white tableHeading pl-10">
-              STOCK ITEM PURCHASE
-            </h3>
-            <input
-              readOnly
-              placeholder="Voucher no#"
-              value={voucher}
-              className="custom-select p-3  mr-10 mt-2 w-40"
-            />
-          </div>
-          <div className="bg-blue-500 pb-3">
-            <div className="flex content-center pt-5">
+    <>
+      <Box sx={{ backgroundColor: "#000000", padding: "2rem" }}>
+        {/* <SideBar /> */}
+        <div className="">
+          {/* <Header /> */}
+          <div className="meterTableMain">
+            {contextHolder}
+            <div className="bg-blue-500 headingBox pt-2 flex justify-between">
+              <h3 className=" text-white tableHeading pl-10">
+                STOCK ITEM PURCHASE
+              </h3>
               <input
-                type="date"
-                value={dateEntered}
-                className="custom-select ml-10 p-3"
-                onChange={(e) => setDateEntered(e.target.value)}
+                readOnly
+                placeholder="Voucher no#"
+                value={voucher}
+                className="custom-select p-3  mr-10 mt-2 w-40"
               />
-              <input
-                type="number"
-                name=""
-                value={shift}
-                placeholder="Shift"
-                className=" custom-select ml-10 p-3"
-                onChange={(e) => setShift(e.target.value)}
-              />
-              {fieldsShow && (
-                <>
-                  <Select
-                    showSearch
-                    className="custom-select ml-10 p-1"
-                    placeholder="Credit GL Code"
-                    optionFilterProp="children"
-                    value={state.glCode || "Credit GL Code"}
-                    onChange={(e) => {
-                      const lCode = state.ledgerCodes.find(
-                        (el) => el.generalLedgerCode === e
-                      );
-                      setState({
-                        ...state,
-                        glCode: e,
-                        glDescription: lCode.description,
-                      });
-                    }}
-                  >
-                    {state.ledgerCodes.map((el) => (
-                      <Option value={el.generalLedgerCode}>
-                        {el.generalLedgerCode}
-                      </Option>
-                    ))}
-                  </Select>
-                  <Select
-                    showSearch
-                    className="custom-select ml-10 p-1"
-                    placeholder="GL Description"
-                    optionFilterProp="children"
-                    value={state.glDescription || "GL Description "}
-                    onChange={(e) => {
-                      const lCode = state.ledgerCodes.find(
-                        (el) => el.generalLedgerCode === e
-                      );
-                      setState({
-                        ...state,
-                        glCode: e,
-                        glDescription: lCode.description,
-                      });
-                    }}
-                  >
-                    {state.ledgerCodes.map((el) => (
-                      <Option value={el.generalLedgerCode}>
-                        {el.description}
-                      </Option>
-                    ))}
-                  </Select>
-
-                  <Select
-                    showSearch
-                    placeholder="A/C No."
-                    className="custom-select ml-10 mr-10 p-1"
-                    optionFilterProp="children"
-                    value={state.partyId || "A/C No."}
-                    onChange={(e) => {
-                      console.log("e", e);
-
-                      const _party = state.parties.find(
-                        (el) => el.partyId === e
-                      );
-                      if (_party) {
-                        setState({
-                          ...state,
-                          partyId: e,
-                          partyName: _party.PartyName,
-                          glCode: _party.chartOfAccount.generalLedgerCode,
-                          glDescription: _party.chartOfAccount.description,
-                        });
-                      } else {
-                        setState({
-                          ...state,
-                          partyId: e,
-                          partyName: "",
-                          glCode: "",
-                          glDescription: "",
-                        });
-                      }
-                    }}
-                  >
-                    <Option value={0}>None</Option>
-                    {state.parties.map((el) => (
-                      <Option value={el.partyId}>{el.partyId}</Option>
-                    ))}
-                  </Select>
-                </>
-              )}
             </div>
-          </div>
-          {fieldsShow && (
-            <div className="">
-              <div className="flex content-center flex-wrap pt-5">
-                <Select
-                  showSearch
-                  placeholder="Select item"
-                  className="bg-black text-white  inpTxt  p-1 h-9 ml-10 w-20"
-                  optionFilterProp="children"
-                  value={state.code || "Item"}
-                  onChange={(e) => {
-                    const { itemName: productName } = state.items.find(
-                      (el) => el.itemCode === e
-                    );
-                    setState({ ...state, code: e, name: productName });
-                  }}
-                >
-                  {state.items.map((el) => (
-                    <Option value={el.itemCode}>{el.itemCode}</Option>
-                  ))}
-                </Select>
-                <Select
-                  showSearch
-                  placeholder="Select Product Name"
-                  optionFilterProp="children"
-                  className="bg-black text-white  inpTxt  p-1 h-9 ml-3 w-28"
-                  value={state.name || "Prodct Name"}
-                  onChange={(e) => {
-                    const { itemName: productName } = state.items.find(
-                      (el) => el.itemCode === e
-                    );
-                    setState({ ...state, code: e, name: productName });
-                  }}
-                >
-                  {state.items.map((el) => (
-                    <Option value={el.itemCode}>{el.itemName}</Option>
-                  ))}
-                </Select>
-
-                <div className="">
-                  <Select
-                    showSearch
-                    placeholder="Supplier Name"
-                    className=" bg-black text-white  inpTxt  p-1 h-9 ml-3 w-28"
-                    optionFilterProp="children"
-                    value={state.partyName || "Supplier Name"}
-                    onChange={(e) => {
-                      const { PartyName, chartOfAccount } = state.parties.find(
-                        (el) => el.partyId === e
-                      );
-                      setState({
-                        ...state,
-                        partyId: e,
-                        partyName: PartyName,
-                        glCode: chartOfAccount.generalLedgerCode,
-                        glDescription: chartOfAccount.description,
-                      });
-                    }}
-                  >
-                    {state.parties.map((el) => (
-                      <Option value={el.partyId}>{el.PartyName}</Option>
-                    ))}
-                  </Select>
-                </div>
+            <div className="bg-blue-500 pb-3">
+              <div className="flex content-center pt-5">
                 <input
-                  type="number"
-                  name="quantity"
-                  id=""
-                  value={state.quantity}
-                  // onChange={onChangeText}
-                  onChange={(e) => {
-                    if (state.purchaseRate) {
-                      setState({
-                        ...state,
-                        creditAmount: e.target.value * state.purchaseRate,
-                        quantity: e.target.value,
-                      });
-                    } else {
-                      setState({ ...state, quantity: e.target.value });
-                    }
-                  }}
-                  placeholder="Quantity"
-                  className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-20"
+                  type="date"
+                  value={dateEntered}
+                  className="custom-select ml-10 p-3"
+                  onChange={(e) => setDateEntered(e.target.value)}
                 />
                 <input
                   type="number"
-                  name="purchaseRate"
-                  id=""
-                  value={state.purchaseRate}
-                  // onChange={onChangeText}
-                  onChange={(e) => {
-                    if (state.quantity) {
-                      setState({
-                        ...state,
-                        creditAmount: e.target.value * state.quantity,
-                        purchaseRate: e.target.value,
-                      });
-                    } else {
-                      setState({ ...state, purchaseRate: e.target.value });
-                    }
-                  }}
-                  placeholder="P/Rate"
-                  className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-16"
+                  name=""
+                  value={shift}
+                  placeholder="Shift"
+                  className=" custom-select ml-10 p-3"
+                  onChange={(e) => setShift(e.target.value)}
                 />
-                <input
-                  type="number"
-                  name="cashAmount"
-                  id=""
-                  value={state.cashAmount}
-                  disabled={Boolean(state.creditAmount)}
-                  // onChange={onChangeText}
-                  onChange={(e) => {
-                    if (state.quantity) {
-                      setState({
-                        ...state,
-                        purchaseRate: e.target.value / state.quantity,
-                        cashAmount: e.target.value,
-                      });
-                    } else {
-                      setState({ ...state, cashAmount: e.target.value });
-                    }
-                  }}
-                  placeholder="Cash Amount"
-                  className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-28"
-                />
-                <input
-                  type="number"
-                  name="creditAmount"
-                  id=""
-                  disabled={Boolean(state.cashAmount)}
-                  value={state.creditAmount}
-                  onChange={(e) => {
-                    if (state.quantity) {
-                      setState({
-                        ...state,
-                        purchaseRate: e.target.value / state.quantity,
-                        creditAmount: e.target.value,
-                      });
-                    } else {
-                      setState({ ...state, creditAmount: e.target.value });
-                    }
-                  }}
-                  placeholder="Credit Amount"
-                  className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-28"
-                />
-                <input
-                  type="text"
-                  id=""
-                  placeholder="Rebate"
-                  name="rebate"
-                  value={state.rebate}
-                  onChange={onChangeText}
-                  className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-16"
-                />
-                <input
-                  type="number"
-                  id=""
-                  name="withHoldingTax"
-                  value={state.withHoldingTax}
-                  onChange={onChangeText}
-                  placeholder="W/H Tax"
-                  className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-16"
-                />
-                <input
-                  type="number"
-                  name="salesTax"
-                  value={state.salesTax}
-                  onChange={onChangeText}
-                  id=""
-                  placeholder="Salex Tax"
-                  className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-16"
-                />
-                <input
-                  type="number"
-                  name="freight"
-                  value={state.freight}
-                  onChange={onChangeText}
-                  placeholder="Frieght/L"
-                  className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-20"
-                />
-
-                <div className="">
-                  <div className="flex content-center flex-wrap justify-center pt-5">
-                    <input
-                      type="number"
-                      name="lorryTip"
-                      value={state.lorryTip}
-                      onChange={onChangeText}
-                      placeholder="Lorry Tip"
-                      className=" bg-black text-white inpTxt mt-2 p-1 h-9 ml-10 w-20"
-                    />
-                    <input
-                      type="number"
-                      name="depoExp"
-                      value={state.depoExp}
-                      onChange={onChangeText}
-                      placeholder="Depo Exp."
-                      className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
-                    />
-                    <input
-                      type="text"
-                      name="cmpRate"
-                      value={state.cmpRate}
-                      onChange={onChangeText}
-                      placeholder="CMP Rate"
-                      className=" bg-black text-white inpTxt mt-2 p-1 h-9 ml-3 w-20"
-                    />
-                    <input
-                      type="text"
-                      name="invoiceNo"
-                      value={state.invoiceNo}
-                      onChange={onChangeText}
-                      placeholder="Invoice No"
-                      className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
-                    />
-                    <input
-                      type="date"
-                      name="invoiceDate"
-                      value={state.invoiceDate}
-                      onChange={onChangeText}
-                      className="inpTxt mt-2 dateInp bg-black text-slate-400  p-2 h-9 ml-3 w-28"
-                    />
-                    <input
-                      type="text"
-                      name="lorryNo"
-                      value={state.lorryNo}
-                      onChange={onChangeText}
-                      placeholder="Lorry No"
-                      className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
-                    />
-                    <input
-                      type="number"
-                      name="shortDip"
-                      value={state.shortDip}
-                      onChange={onChangeText}
-                      placeholder="Short Dip"
-                      className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
-                    />
-                    <input
-                      type="number"
-                      name="shortQty"
-                      value={state.shortQty}
-                      onChange={onChangeText}
-                      placeholder="Short Qty"
-                      className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
-                    />
-                    <input
-                      type="text"
-                      name="cheque"
-                      value={state.cheque}
-                      onChange={onChangeText}
-                      placeholder="Chq/DD"
-                      className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
-                    />
+                {fieldsShow && (
+                  <>
                     <Select
                       showSearch
-                      placeholder="Tank"
+                      className="custom-select ml-10 p-1"
+                      placeholder="Credit GL Code"
                       optionFilterProp="children"
-                      className="bg-black text-white  inpTxt  mt-2 p-1 h-9 ml-3 w-20"
-                      value={state.tank || "Tank"}
+                      value={state.glCode || "Credit GL Code"}
                       onChange={(e) => {
-                        setState({ ...state, tank: e });
+                        const lCode = state.ledgerCodes.find(
+                          (el) => el.generalLedgerCode === e
+                        );
+                        setState({
+                          ...state,
+                          glCode: e,
+                          glDescription: lCode.description,
+                        });
                       }}
                     >
-                      {state.tanks.map((el) => (
-                        <Option value={el.tankNumber}>{el.tankNumber}</Option>
+                      {state.ledgerCodes.map((el) => (
+                        <Option value={el.generalLedgerCode}>
+                          {el.generalLedgerCode}
+                        </Option>
                       ))}
                     </Select>
-                    {Boolean(editedItem != null) ? (
-                      <button
-                        onClick={editItem}
-                        className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded"
+                    <Select
+                      showSearch
+                      className="custom-select ml-10 p-1"
+                      placeholder="GL Description"
+                      optionFilterProp="children"
+                      value={state.glDescription || "GL Description "}
+                      onChange={(e) => {
+                        const lCode = state.ledgerCodes.find(
+                          (el) => el.generalLedgerCode === e
+                        );
+                        setState({
+                          ...state,
+                          glCode: e,
+                          glDescription: lCode.description,
+                        });
+                      }}
+                    >
+                      {state.ledgerCodes.map((el) => (
+                        <Option value={el.generalLedgerCode}>
+                          {el.description}
+                        </Option>
+                      ))}
+                    </Select>
+
+                    <Select
+                      showSearch
+                      placeholder="A/C No."
+                      className="custom-select ml-10 mr-10 p-1"
+                      optionFilterProp="children"
+                      value={state.partyId || "A/C No."}
+                      onChange={(e) => {
+                        console.log("e", e);
+
+                        const _party = state.parties.find(
+                          (el) => el.partyId === e
+                        );
+                        if (_party) {
+                          setState({
+                            ...state,
+                            partyId: e,
+                            partyName: _party.PartyName,
+                            glCode: _party.chartOfAccount.generalLedgerCode,
+                            glDescription: _party.chartOfAccount.description,
+                          });
+                        } else {
+                          setState({
+                            ...state,
+                            partyId: e,
+                            partyName: "",
+                            glCode: "",
+                            glDescription: "",
+                          });
+                        }
+                      }}
+                    >
+                      <Option value={0}>None</Option>
+                      {state.parties.map((el) => (
+                        <Option value={el.partyId}>{el.partyId}</Option>
+                      ))}
+                    </Select>
+                  </>
+                )}
+              </div>
+            </div>
+            {fieldsShow && (
+              <div className="">
+                <div className="flex content-center flex-wrap pt-5">
+                  <Select
+                    showSearch
+                    placeholder="Select item"
+                    className="bg-black text-white  inpTxt  p-1 h-9 ml-10 w-20"
+                    optionFilterProp="children"
+                    value={state.code || "Item"}
+                    onChange={(e) => {
+                      const { itemName: productName } = state.items.find(
+                        (el) => el.itemCode === e
+                      );
+                      setState({ ...state, code: e, name: productName });
+                    }}
+                  >
+                    {state.items.map((el) => (
+                      <Option value={el.itemCode}>{el.itemCode}</Option>
+                    ))}
+                  </Select>
+                  <Select
+                    showSearch
+                    placeholder="Select Product Name"
+                    optionFilterProp="children"
+                    className="bg-black text-white  inpTxt  p-1 h-9 ml-3 w-28"
+                    value={state.name || "Prodct Name"}
+                    onChange={(e) => {
+                      const { itemName: productName } = state.items.find(
+                        (el) => el.itemCode === e
+                      );
+                      setState({ ...state, code: e, name: productName });
+                    }}
+                  >
+                    {state.items.map((el) => (
+                      <Option value={el.itemCode}>{el.itemName}</Option>
+                    ))}
+                  </Select>
+
+                  <div className="">
+                    <Select
+                      showSearch
+                      placeholder="Supplier Name"
+                      className=" bg-black text-white  inpTxt  p-1 h-9 ml-3 w-28"
+                      optionFilterProp="children"
+                      value={state.partyName || "Supplier Name"}
+                      onChange={(e) => {
+                        const { PartyName, chartOfAccount } = state.parties.find(
+                          (el) => el.partyId === e
+                        );
+                        setState({
+                          ...state,
+                          partyId: e,
+                          partyName: PartyName,
+                          glCode: chartOfAccount.generalLedgerCode,
+                          glDescription: chartOfAccount.description,
+                        });
+                      }}
+                    >
+                      {state.parties.map((el) => (
+                        <Option value={el.partyId}>{el.PartyName}</Option>
+                      ))}
+                    </Select>
+                  </div>
+                  <input
+                    type="number"
+                    name="quantity"
+                    id=""
+                    value={state.quantity}
+                    // onChange={onChangeText}
+                    onChange={(e) => {
+                      if (state.purchaseRate) {
+                        setState({
+                          ...state,
+                          creditAmount: e.target.value * state.purchaseRate,
+                          quantity: e.target.value,
+                        });
+                      } else {
+                        setState({ ...state, quantity: e.target.value });
+                      }
+                    }}
+                    placeholder="Quantity"
+                    className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-20"
+                  />
+                  <input
+                    type="number"
+                    name="purchaseRate"
+                    id=""
+                    value={state.purchaseRate}
+                    // onChange={onChangeText}
+                    onChange={(e) => {
+                      if (state.quantity) {
+                        setState({
+                          ...state,
+                          creditAmount: e.target.value * state.quantity,
+                          purchaseRate: e.target.value,
+                        });
+                      } else {
+                        setState({ ...state, purchaseRate: e.target.value });
+                      }
+                    }}
+                    placeholder="P/Rate"
+                    className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-16"
+                  />
+                  <input
+                    type="number"
+                    name="cashAmount"
+                    id=""
+                    value={state.cashAmount}
+                    disabled={Boolean(state.creditAmount)}
+                    // onChange={onChangeText}
+                    onChange={(e) => {
+                      if (state.quantity) {
+                        setState({
+                          ...state,
+                          purchaseRate: e.target.value / state.quantity,
+                          cashAmount: e.target.value,
+                        });
+                      } else {
+                        setState({ ...state, cashAmount: e.target.value });
+                      }
+                    }}
+                    placeholder="Cash Amount"
+                    className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-28"
+                  />
+                  <input
+                    type="number"
+                    name="creditAmount"
+                    id=""
+                    disabled={Boolean(state.cashAmount)}
+                    value={state.creditAmount}
+                    onChange={(e) => {
+                      if (state.quantity) {
+                        setState({
+                          ...state,
+                          purchaseRate: e.target.value / state.quantity,
+                          creditAmount: e.target.value,
+                        });
+                      } else {
+                        setState({ ...state, creditAmount: e.target.value });
+                      }
+                    }}
+                    placeholder="Credit Amount"
+                    className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-28"
+                  />
+                  <input
+                    type="text"
+                    id=""
+                    placeholder="Rebate"
+                    name="rebate"
+                    value={state.rebate}
+                    onChange={onChangeText}
+                    className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-16"
+                  />
+                  <input
+                    type="number"
+                    id=""
+                    name="withHoldingTax"
+                    value={state.withHoldingTax}
+                    onChange={onChangeText}
+                    placeholder="W/H Tax"
+                    className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-16"
+                  />
+                  <input
+                    type="number"
+                    name="salesTax"
+                    value={state.salesTax}
+                    onChange={onChangeText}
+                    id=""
+                    placeholder="Salex Tax"
+                    className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-16"
+                  />
+                  <input
+                    type="number"
+                    name="freight"
+                    value={state.freight}
+                    onChange={onChangeText}
+                    placeholder="Frieght/L"
+                    className="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-20"
+                  />
+
+                  <div className="">
+                    <div className="flex content-center flex-wrap justify-center pt-5">
+                      <input
+                        type="number"
+                        name="lorryTip"
+                        value={state.lorryTip}
+                        onChange={onChangeText}
+                        placeholder="Lorry Tip"
+                        className=" bg-black text-white inpTxt mt-2 p-1 h-9 ml-10 w-20"
+                      />
+                      <input
+                        type="number"
+                        name="depoExp"
+                        value={state.depoExp}
+                        onChange={onChangeText}
+                        placeholder="Depo Exp."
+                        className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
+                      />
+                      <input
+                        type="text"
+                        name="cmpRate"
+                        value={state.cmpRate}
+                        onChange={onChangeText}
+                        placeholder="CMP Rate"
+                        className=" bg-black text-white inpTxt mt-2 p-1 h-9 ml-3 w-20"
+                      />
+                      <input
+                        type="text"
+                        name="invoiceNo"
+                        value={state.invoiceNo}
+                        onChange={onChangeText}
+                        placeholder="Invoice No"
+                        className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
+                      />
+                      <input
+                        type="date"
+                        name="invoiceDate"
+                        value={state.invoiceDate}
+                        onChange={onChangeText}
+                        className="inpTxt mt-2 dateInp bg-black text-slate-400  p-2 h-9 ml-3 w-28"
+                      />
+                      <input
+                        type="text"
+                        name="lorryNo"
+                        value={state.lorryNo}
+                        onChange={onChangeText}
+                        placeholder="Lorry No"
+                        className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
+                      />
+                      <input
+                        type="number"
+                        name="shortDip"
+                        value={state.shortDip}
+                        onChange={onChangeText}
+                        placeholder="Short Dip"
+                        className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
+                      />
+                      <input
+                        type="number"
+                        name="shortQty"
+                        value={state.shortQty}
+                        onChange={onChangeText}
+                        placeholder="Short Qty"
+                        className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
+                      />
+                      <input
+                        type="text"
+                        name="cheque"
+                        value={state.cheque}
+                        onChange={onChangeText}
+                        placeholder="Chq/DD"
+                        className="bg-black text-slate-400 inpTxt mt-2 p-2 h-9 ml-3  w-20"
+                      />
+                      <Select
+                        showSearch
+                        placeholder="Tank"
+                        optionFilterProp="children"
+                        className="bg-black text-white  inpTxt  mt-2 p-1 h-9 ml-3 w-20"
+                        value={state.tank || "Tank"}
+                        onChange={(e) => {
+                          setState({ ...state, tank: e });
+                        }}
                       >
-                        EDIT
-                      </button>
-                    ) : (
-                      <button
-                        onClick={addItem}
-                        className="bg-blue-500 hover:bg-blue-700 text-white mt-2 ml-3 py-1 px-4 rounded"
-                      >
-                        ADD +
-                      </button>
-                    )}
+                        {state.tanks.map((el) => (
+                          <Option value={el.tankNumber}>{el.tankNumber}</Option>
+                        ))}
+                      </Select>
+                      {Boolean(editedItem != null) ? (
+                        <button
+                          onClick={editItem}
+                          className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded"
+                        >
+                          EDIT
+                        </button>
+                      ) : (
+                        <button
+                          onClick={addItem}
+                          className="bg-blue-500 hover:bg-blue-700 text-white mt-2 ml-3 py-1 px-4 rounded"
+                        >
+                          ADD +
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
-          <div class="overflow-x-auto m-10 mr-10 mt-4">
-            <table class="min-w-full divide-y divide-gray-200">
-              <thead>
-                <tr>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    SNo.
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    ITEM ID
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    ITEM
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Party
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Party Name
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    QTY
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    P/Rate
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Cash
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Credit
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Rebate
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    W/H
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Sales Tax
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    GL
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    GL Desc.
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Freight
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Lorry Tip
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Depo Exp.
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    CMP
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Invoice
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Invoice Date
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Lorry No.
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Short Dip
-                  </th>{" "}
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Short Qty
-                  </th>{" "}
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Cheque/DD
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    Tank
-                  </th>
-                  <th
-                    className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
-                    scope="col"
-                  >
-                    ACTION
-                  </th>
-                </tr>
-              </thead>
+            )}
+            <div class="overflow-x-auto m-10 mr-10 mt-4">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead>
+                  <tr>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      SNo.
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      ITEM ID
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      ITEM
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Party
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Party Name
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      QTY
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      P/Rate
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Cash
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Credit
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Rebate
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      W/H
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Sales Tax
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      GL
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      GL Desc.
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Freight
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Lorry Tip
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Depo Exp.
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      CMP
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Invoice
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Invoice Date
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Lorry No.
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Short Dip
+                    </th>{" "}
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Short Qty
+                    </th>{" "}
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Cheque/DD
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Tank
+                    </th>
+                    <th
+                      className="px-6 fs-15 py-3 table-cell  bg-blue-500  text-left text-xs font-medium  uppercase tracking-wider"
+                      scope="col"
+                    >
+                      ACTION
+                    </th>
+                  </tr>
+                </thead>
 
-              <tbody className="tableBody bg-white divide-y divide-gray-200">
-                {itemsQueue.map((ele, i) => {
-                  return (
-                    <tr key={i} className="tbodyData">
-                      <td className="pl-3 pt-3 pb-3 table-cell ">{i + 1}</td>
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.code}</p>
-                      </td>
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.name}</p>
-                      </td>
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.partyId}</p>
-                      </td>
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.partyName}</p>
-                      </td>
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.quantity}</p>
-                      </td>
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.purchaseRate}</p>
-                      </td>
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.cashAmount}</p>
-                      </td>
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.creditAmount}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.rebate}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.withHoldingTax}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.salesTax}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.glCode}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.glDescription}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.freight}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.lorryTip}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.depoExp}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.cmpRate}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.invoiceNo}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.invoiceDate}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.lorryNo}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.shortDip}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.shortQty}</p>
-                      </td>{" "}
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.cheque}</p>
-                      </td>
-                      <td className="pt-3 pb-3 table-cell ">
-                        <p className="fontSize">{ele.tank}</p>
-                      </td>
-                      <td className="pt-3 pb-3 table-cell ">
-                        <Dropdown overlay={menu(i)} placement="bottomLeft">
-                          <Button>Action</Button>
-                        </Dropdown>
-                        {/* <button style={{
+                <tbody className="tableBody bg-white divide-y divide-gray-200">
+                  {itemsQueue.map((ele, i) => {
+                    return (
+                      <tr key={i} className="tbodyData">
+                        <td className="pl-3 pt-3 pb-3 table-cell ">{i + 1}</td>
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.code}</p>
+                        </td>
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.name}</p>
+                        </td>
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.partyId}</p>
+                        </td>
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.partyName}</p>
+                        </td>
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.quantity}</p>
+                        </td>
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.purchaseRate}</p>
+                        </td>
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.cashAmount}</p>
+                        </td>
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.creditAmount}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.rebate}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.withHoldingTax}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.salesTax}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.glCode}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.glDescription}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.freight}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.lorryTip}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.depoExp}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.cmpRate}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.invoiceNo}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.invoiceDate}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.lorryNo}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.shortDip}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.shortQty}</p>
+                        </td>{" "}
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.cheque}</p>
+                        </td>
+                        <td className="pt-3 pb-3 table-cell ">
+                          <p className="fontSize">{ele.tank}</p>
+                        </td>
+                        <td className="pt-3 pb-3 table-cell ">
+                          <Dropdown overlay={menu(i)} placement="bottomLeft">
+                            <Button>Action</Button>
+                          </Dropdown>
+                          {/* <button style={{
                                 border: "1px solid",
                                 padding: '5pxs'
                               }} onClick={() => null}>Edit</button>
@@ -1109,18 +1111,18 @@ const Purchase = () => {
                                 border: "1px solid",
                                 padding: '5pxs'
                               }} onClick={() => null}>Delete</button> */}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
 
-          <div className="div">
-            <div className="flex">
-              <div className="overflow-x-auto   shadow-md sm:rounded-lg tableDiv p-5 pl-10  w-full">
-                {/* <input
+            <div className="div">
+              <div className="flex">
+                <div className="overflow-x-auto   shadow-md sm:rounded-lg tableDiv p-5 pl-10  w-full">
+                  {/* <input
                   type="text"
                   readOnly
                   placeholder=""
@@ -1128,95 +1130,96 @@ const Purchase = () => {
                   id=""
                   className="mt-2 p-1 w-full bg-black text-slate-400 outline-none"
                 /> */}
-                <div className="flex justify-between">
-                  <div>
-                    {type === "ADD" && (
-                      <button
-                        onClick={addVoucher}
-                        className="bg-blue-500 hover:bg-blue-700 text-white mt-3 py-1 px-4 rounded"
-                      >
-                        Add
-                      </button>
-                    )}
+                  <div className="flex justify-between">
+                    <div>
+                      {type === "ADD" && (
+                        <button
+                          onClick={addVoucher}
+                          className="bg-blue-500 hover:bg-blue-700 text-white mt-3 py-1 px-4 rounded"
+                        >
+                          Add
+                        </button>
+                      )}
 
-                    {type === "SAVE" && (
-                      <button
-                        onClick={save}
-                        className="bg-blue-500 hover:bg-blue-700 text-white mt-3  py-1 px-6 fs-15 rounded"
-                      >
-                        Save
-                      </button>
-                    )}
+                      {type === "SAVE" && (
+                        <button
+                          onClick={save}
+                          className="bg-blue-500 hover:bg-blue-700 text-white mt-3  py-1 px-6 fs-15 rounded"
+                        >
+                          Save
+                        </button>
+                      )}
 
-                    {type === "ADD" && (
+                      {type === "ADD" && (
+                        <button
+                          onClick={edit}
+                          className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-6 fs-15 rounded"
+                        >
+                          Edit
+                        </button>
+                      )}
+
                       <button
-                        onClick={edit}
+                        onClick={() => deletePurchase()}
+                        className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-6 fs-15 rounded"
+                        disabled={type !== "ADD"}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        onClick={() => {
+                          clearStates();
+                        }}
                         className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-6 fs-15 rounded"
                       >
-                        Edit
+                        {type === "EDIT" ? "Done" : "Exit"}
                       </button>
-                    )}
+                    </div>
+                    <div className="flex content-end mt-3 bg-white justify-end"></div>
 
-                    <button
-                      onClick={() => deletePurchase()}
-                      className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-6 fs-15 rounded"
-                      disabled={type !== "ADD"}
-                    >
-                      Delete
-                    </button>
-                    <button
-                      onClick={() => {
-                        clearStates();
-                      }}
-                      className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-6 fs-15 rounded"
-                    >
-                      {type === "EDIT" ? "Done" : "Exit"}
-                    </button>
-                  </div>
-                  <div className="flex content-end mt-3 bg-white justify-end"></div>
-
-                  <div>
-                    <button className="bg-black hover:bg-blue-700 text-white mt-3 py-1 px-4 rounded">
-                      <img src={`./img/first.png`} alt="" />
-                    </button>
-                    <button className="bg-black hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded">
-                      <img src={`./img/previous.png`} alt="" />
-                    </button>
-                    <button className="bg-black hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded">
-                      <img src={`./img/next.png`} alt="" />
-                    </button>
-                    <button className="bg-black hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded">
-                      <img src={`./img/latest.png`} alt="" />
-                    </button>
-                  </div>
-                </div>
-                <div className="flex justify-between pt-5 pb-5">
-                  <div>
-                    <div class="flex items-center">
-                      <span class="mr-2 text-white">Total Amount</span>
-                      <input
-                        type="text"
-                        class="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-28"
-                      />
+                    <div>
+                      <button className="bg-black hover:bg-blue-700 text-white mt-3 py-1 px-4 rounded">
+                        <img src={`./img/first.png`} alt="" />
+                      </button>
+                      <button className="bg-black hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded">
+                        <img src={`./img/previous.png`} alt="" />
+                      </button>
+                      <button className="bg-black hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded">
+                        <img src={`./img/next.png`} alt="" />
+                      </button>
+                      <button className="bg-black hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded">
+                        <img src={`./img/latest.png`} alt="" />
+                      </button>
                     </div>
                   </div>
-                  <div className="">
-                    <div class="flex items-center">
-                      <span class="mr-2 text-white">Total W/O Taxes</span>
-                      <input
-                        type="text"
-                        class="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-28"
-                      />
+                  <div className="flex justify-between pt-5 pb-5">
+                    <div>
+                      <div class="flex items-center">
+                        <span class="mr-2 text-white">Total Amount</span>
+                        <input
+                          type="text"
+                          class="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-28"
+                        />
+                      </div>
                     </div>
-                  </div>
+                    <div className="">
+                      <div class="flex items-center">
+                        <span class="mr-2 text-white">Total W/O Taxes</span>
+                        <input
+                          type="text"
+                          class="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-28"
+                        />
+                      </div>
+                    </div>
 
-                  <div>
-                    <div class="flex items-center">
-                      <span class="mr-2 text-white">Total Incl Taxes</span>
-                      <input
-                        type="text"
-                        class="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-28"
-                      />
+                    <div>
+                      <div class="flex items-center">
+                        <span class="mr-2 text-white">Total Incl Taxes</span>
+                        <input
+                          type="text"
+                          class="bg-black text-slate-400 inpTxt p-2 h-9 ml-3  w-28"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1224,41 +1227,42 @@ const Purchase = () => {
             </div>
           </div>
         </div>
-      </div>
-      <Popup popup={editPopup} handlePopup={setEditpopup} onOk={editHandler}>
-        <div>
-          <h2>Please type voucher number</h2>
-          <input
-            style={{
-              border: "1px solid",
-            }}
-            autoFocus
-            type="number"
-            value={voucher}
-            onChange={(e) => setVoucher(e.target.value)}
-          />
-        </div>
-      </Popup>
+        <Popup popup={editPopup} handlePopup={setEditpopup} onOk={editHandler}>
+          <div>
+            <h2>Please type voucher number</h2>
+            <input
+              style={{
+                border: "1px solid",
+              }}
+              autoFocus
+              type="number"
+              value={voucher}
+              onChange={(e) => setVoucher(e.target.value)}
+            />
+          </div>
+        </Popup>
 
-      <Popup
-        popup={deletePopup}
-        handlePopup={setDeletepopup}
-        onOk={deletePurchaseHandler}
-      >
-        <div>
-          <h2>Please type voucher number for delete record</h2>
-          <input
-            style={{
-              border: "1px solid",
-            }}
-            autoFocus
-            type="number"
-            value={voucher}
-            onChange={(e) => setVoucher(e.target.value)}
-          />
-        </div>
-      </Popup>
-    </div>
+        <Popup
+          popup={deletePopup}
+          handlePopup={setDeletepopup}
+          onOk={deletePurchaseHandler}
+        >
+          <div>
+            <h2>Please type voucher number for delete record</h2>
+            <input
+              style={{
+                border: "1px solid",
+              }}
+              autoFocus
+              type="number"
+              value={voucher}
+              onChange={(e) => setVoucher(e.target.value)}
+            />
+          </div>
+        </Popup>
+      </Box>
+    </>
+
   );
 };
 

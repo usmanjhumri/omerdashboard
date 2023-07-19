@@ -26,8 +26,8 @@ const SideBar = ({ childComponent }) => {
           <Grid item xs={5} md={2}>
             <div
               className={` ${
-                open ? "w-64" : "w-20 "
-              }  h-screen p-5 navClass  pt-8  relative duration-300  `}
+                open ? "auto" : "w-20 "
+              }  h-screen  navClass  pt-8  relative duration-300  `}
             >
               <img
                 src="./assets/control.png"
@@ -238,7 +238,7 @@ const SideBar = ({ childComponent }) => {
               </li>
             </div>
           </Grid>
-          <Grid item xs={7} md={9}>
+          <Grid item xs={7} md={10}>
             {childComponent}
           </Grid>
         </Grid>
