@@ -1,0 +1,17 @@
+.inpTxt{
+    border: none;
+    outline: none;
+    border-radius: 3px;
+}
+.glDesc{
+    width: 17rem;
+}
+.inpTxt::placeholder{
+    font-size: small;
+}
+.tableHeading{
+    overflow-x: scroll;
+}
+.fontSize{
+    font-size: 15px;
+}

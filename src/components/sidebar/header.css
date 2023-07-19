@@ -1,0 +1,14 @@
+.navR{
+    background: #48505A;
+}
+.navClass{
+    background-color: #292C33;
+}
+.arrow{
+    border-color: #292C33;
+}
+.braces{
+    /* letter-spacing: 5px !important; */
+    font-size: 20px !important;
+    font-weight: bolder !important;
+}

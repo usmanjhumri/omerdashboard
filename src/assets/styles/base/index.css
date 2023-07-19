@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* .main{
+    position: relative;
+} */
+
+body {
+    /* overflow-y: hidden; */
+}
+
+.navClass {
+    /* position: fixed; */
+    /* top: 0; */
+    background-color: #292C33;
+}
+
+
+.navR {
+    background: #3A3D43;
+}
+
+.tableDiv {
+    /* position: absolute; */
+    /* width: 80%; */
+}
+
+.meterTableMain {
+    background: #292C33;
+}
+
+.tableHeading {
+    font-weight: 700;
+    /* background-color: #292C33; */
+    font-size: 30px;
+}
+
+.tableBody {
+    /* background-color: #454850; */
+    background-color: #3C3F46;
+}
+
+.tableBody input {
+    outline: none;
+    /* background-color: #454850; */
+    background-color: #3C3F46;
+}
+
+.dateInp {
+    color-scheme: dark;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+/* ::-webkit-scrollbar-track {
+    background: #000;
+} */
+
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+    background: #888;
+} */
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+} */
+
+/* ANTD */
+.ant-btn-primary {
+    background-color: #1677ff;
+}
+
+.ant-spin-dot .ant-spin-dot-item {
+    background-color: white !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;   
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}

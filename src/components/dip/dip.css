@@ -1,0 +1,34 @@
+.dateInp{
+    color-scheme: dark;
+}
+.inpTxt{
+    border: none;
+    outline: none;
+    border-radius: 3px;
+}
+
+.w-78 {
+    width: 70px;
+}
+
+.mt-6o{
+    margin-top: 6%;;
+}
+@media (min-width: 768px) {
+    .main{
+        width: fit-content;
+    }
+    /* CSS rules for screens with a width of 768px or larger */
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    /* CSS rules for screens between 768px and 1024px wide */
+    .main{
+        width: fit-content;
+    }
+  }
+  @media (min-width: 1440px) {
+    .main{
+        width: auto;
+    }
+    /* CSS rules for screens with a width of 1440px or larger */
+  }
