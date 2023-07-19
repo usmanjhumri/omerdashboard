@@ -192,10 +192,9 @@ const Payment = () => {
   const addItem = () => {
     if (!(state.partyId || state.glCode) || !state.debit) {
       return message.error(
-        `Please type ${
-          !(state.partyId || state.glCode)
-            ? "account number or GL code"
-            : !state.debit
+        `Please type ${!(state.partyId || state.glCode)
+          ? "account number or GL code"
+          : !state.debit
             ? "debit amount"
             : ""
         }`
@@ -552,9 +551,9 @@ const Payment = () => {
   };
   return (
     <div className="flex  bg-black main">
-      <SideBar />
+      {/* <SideBar /> */}
       <div className="h-full  flex flex-col content-center  w-full">
-        <Header />
+        {/* <Header /> */}
         <div className="meterTableMain ml-10 mt-5 mr-10">
           {contextHolder}
           <div className="bg-blue-500 headingBox flex justify-between">

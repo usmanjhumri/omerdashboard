@@ -101,7 +101,7 @@ const OpeningStock = () => {
   };
   // ------------------ SAVE DATA -----------------
   console.log(state, "state-=-=-=", type);
-  console.log(dateEntered, "date-=-=-=" );
+  console.log(dateEntered, "date-=-=-=");
 
 
   const save = async () => {
@@ -185,18 +185,17 @@ const OpeningStock = () => {
       state.purchaseRate > state.saleRate
     ) {
       return message.error(
-        `Please type ${
-          !state.code
-            ? "add item code"
-            : !state.quantity
+        `Please type ${!state.code
+          ? "add item code"
+          : !state.quantity
             ? "add minimum 1 quantity"
             : !state.purchaseRate
-            ? "Purchase Rate"
-            : !state.saleRate
-            ? "Sale Rate"
-            : state.purchaseRate > state.saleRate
-            ? "Cost Price is LESS than Sale Rate"
-            : ""
+              ? "Purchase Rate"
+              : !state.saleRate
+                ? "Sale Rate"
+                : state.purchaseRate > state.saleRate
+                  ? "Cost Price is LESS than Sale Rate"
+                  : ""
         }`
       );
     } else {
@@ -274,18 +273,17 @@ const OpeningStock = () => {
       state.purchaseRate > state.saleRate
     ) {
       return message.error(
-        `Please type ${
-          !state.code
-            ? "add item code"
-            : !state.quantity
+        `Please type ${!state.code
+          ? "add item code"
+          : !state.quantity
             ? "add minimum 1 quantity"
             : !state.purchaseRate
-            ? "Purchase Rate"
-            : !state.saleRate
-            ? "Sale Rate"
-            : state.purchaseRate > state.saleRate
-            ? "Cost Price is LESS than Sale Rate"
-            : ""
+              ? "Purchase Rate"
+              : !state.saleRate
+                ? "Sale Rate"
+                : state.purchaseRate > state.saleRate
+                  ? "Cost Price is LESS than Sale Rate"
+                  : ""
         }`
       );
     } else {
@@ -465,9 +463,9 @@ const OpeningStock = () => {
   };
   return (
     <div className="flex  bg-black main">
-      <SideBar />
+      {/* <SideBar /> */}
       <div className="h-full  flex flex-col content-center  w-full">
-        <Header />
+        {/* <Header /> */}
         <div className="meterTableMain ml-10 mt-5 mr-10">
           {contextHolder}
           <div className="bg-blue-500 headingBox flex justify-between">

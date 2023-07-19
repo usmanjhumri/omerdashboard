@@ -15,41 +15,41 @@ const Report = () => {
   };
   console.log(dateEntered);
   const [itemsQueue, setItemsQueue] = useState([]);
-//   const [data, setData] = useState({
-//     enteredOn : "",
-//     itemCode: "",
-//     itemName: "",
-//     quantity: "",
-//     rate: ""
-//   })
+  //   const [data, setData] = useState({
+  //     enteredOn : "",
+  //     itemCode: "",
+  //     itemName: "",
+  //     quantity: "",
+  //     rate: ""
+  //   })
   const editHandler = async (e) => {
     if (!dateEntered) return message.error("Please type date !");
     let data = {
-        p_enteredOn: dateEntered
+      p_enteredOn: dateEntered
     }
     const results = await getStockBal(data, access_token);
     console.log(results, "ressaaaaa");
     if (results.success) {
-        const payload = results.data.reduce((acc, curr) => {
-            return [
-              ...acc,
-              {
-                enteredOn: curr.enteredOn,
-                itemCode: curr.itemCode,
-                itemName: curr.itemName,
-                quantity: Number(curr.quantity),
-                purchaseRate: Number(curr.rate),
-              },
-            ];
-          }, []);
-          setItemsQueue(payload);
-    //   setItemsQueue(results.data);
+      const payload = results.data.reduce((acc, curr) => {
+        return [
+          ...acc,
+          {
+            enteredOn: curr.enteredOn,
+            itemCode: curr.itemCode,
+            itemName: curr.itemName,
+            quantity: Number(curr.quantity),
+            purchaseRate: Number(curr.rate),
+          },
+        ];
+      }, []);
+      setItemsQueue(payload);
+      //   setItemsQueue(results.data);
       console.log(itemsQueue, "FUn");
-    //   if (results.data.length > 0) {
-    //     navigate("/stockBalence");
-    //   }
+      //   if (results.data.length > 0) {
+      //     navigate("/stockBalence");
+      //   }
     } else {
-    message.error(results.message);
+      message.error(results.message);
     }
   };
 
@@ -64,7 +64,7 @@ const Report = () => {
         <>
           <div style={{ backgroundColor: "" }}>
             {itemsQueue.length > 0 && (
-              <Example item={itemsQueue}/>
+              <Example item={itemsQueue} />
             )}
           </div>
           <button
@@ -77,9 +77,9 @@ const Report = () => {
       ) : (
         <>
           <div className="flex  bg-black main">
-            <SideBar />
+            {/* <SideBar /> */}
             <div className="h-full  flex flex-col content-center  w-full">
-              <Header />
+              {/* <Header /> */}
               <div className="flex justify-center">
                 <div className="meterTableMain flex flex-col justify-items-center justify-center w-1/2 ml-10 mt-5 mr-10">
                   <div className="bg-blue-500 headingBox flex justify-center">

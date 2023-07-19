@@ -449,9 +449,9 @@ const Purchase = () => {
   };
   return (
     <div className="flex  bg-black main">
-      <SideBar />
+      {/* <SideBar /> */}
       <div className="h-full  flex flex-col content-center  w-80">
-        <Header />
+        {/* <Header /> */}
         <div className="meterTableMain ml-10 mt-5 mr-10">
           {contextHolder}
           <div className="bg-blue-500 headingBox pt-2 flex justify-between">

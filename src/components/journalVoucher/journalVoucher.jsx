@@ -184,7 +184,7 @@ const JV = () => {
     setCreditTotal(Number(creditSum));
 
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemsQueue]) 
+  }, [itemsQueue])
 
   console.log(debitTotal, "totttt");
 
@@ -193,10 +193,9 @@ const JV = () => {
   const addItem = () => {
     if (!(state.partyId || state.glCode) || !(state.debit || state.credit)) {
       return message.error(
-        `Please type ${
-          !(state.partyId || state.glCode)
-            ? "account number or GL code"
-            : !(state.debit || state.credit)
+        `Please type ${!(state.partyId || state.glCode)
+          ? "account number or GL code"
+          : !(state.debit || state.credit)
             ? "debit/credit amount"
             : ""
         }`
@@ -417,9 +416,9 @@ const JV = () => {
   };
   return (
     <div className="flex  bg-black main">
-      <SideBar />
+      {/* <SideBar /> */}
       <div className="h-full  flex flex-col content-center  w-full">
-        <Header />
+        {/* <Header /> */}
         <div className="meterTableMain ml-10 mt-5 mr-10">
           {contextHolder}
           <div className="bg-blue-500 headingBox flex justify-between">

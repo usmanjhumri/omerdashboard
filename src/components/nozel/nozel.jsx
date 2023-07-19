@@ -60,10 +60,9 @@ const Nozel = () => {
   const saveNozel = async (e) => {
     if (!state.nozelNumber || !state.tankNumber) {
       return message.error(
-        `Please type ${
-          !state.nozelNumber
-            ? "Nozel Number"
-            : !state.tankNumber
+        `Please type ${!state.nozelNumber
+          ? "Nozel Number"
+          : !state.tankNumber
             ? "Tank Number"
             : ""
         }`
@@ -108,10 +107,9 @@ const Nozel = () => {
     if (type === "EDIT") {
       if (!state.nozelNumber || !state.tankNumber) {
         return message.error(
-          `Please type ${
-            !state.nozelNumber
-              ? "Nozel Number"
-              : !state.tankNumber
+          `Please type ${!state.nozelNumber
+            ? "Nozel Number"
+            : !state.tankNumber
               ? "Tank Number"
               : ""
           }`
@@ -135,7 +133,7 @@ const Nozel = () => {
         message.error(results.message);
       }
     } else {
-      if(!state.nozelNumber) return message.error("Please Select Nozel")
+      if (!state.nozelNumber) return message.error("Please Select Nozel")
       modal.confirm({
         title: `Confirm`,
         content: "Are you sure you want to delete this Nozel?",
@@ -208,9 +206,9 @@ const Nozel = () => {
   return (
     <>
       <div className="flex  bg-black main">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="h-full  flex flex-col content-center  w-full">
-          <Header />
+          {/* <Header /> */}
           <div className="flex justify-center">
             <div className="meterTableMain flex flex-col justify-items-center justify-center w-1/2 ml-10 mt-5 mr-10">
               <div className="bg-blue-500 headingBox flex justify-center">
@@ -236,7 +234,7 @@ const Nozel = () => {
                             const nozelInfo = state.nozels.find(
                               (el) => el.nozelNumber === e
                             );
-                            console.log(nozelInfo,"e")
+                            console.log(nozelInfo, "e")
                             setState({
                               ...state,
                               nozelNumber: e,

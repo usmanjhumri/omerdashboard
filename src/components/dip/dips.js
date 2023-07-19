@@ -271,7 +271,7 @@ const Dip = () => {
 
   return (
     <div className="flex  bg-black main ">
-      <SideBar />
+      {/* <SideBar /> */}
       <div className="h-full  flex flex-col content-center  w-full">
         <Header />
         <div className="meterTableMain ml-10 mt-6o mr-10">
@@ -295,29 +295,53 @@ const Dip = () => {
                 <table className=" table w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead className="bg-blue-500 text-white uppercase dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th className="pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium " scope="col">
+                      <th
+                        className="pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium "
+                        scope="col"
+                      >
                         SNo.
                       </th>
-                      <th className="pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium " scope="col">
+                      <th
+                        className="pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium "
+                        scope="col"
+                      >
                         TANK NO.
                       </th>
-                      <th className="pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium " scope="col">
+                      <th
+                        className="pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium "
+                        scope="col"
+                      >
                         OPENING DIP
                       </th>
-                      <th className="w-1/5 pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium " scope="col">
+                      <th
+                        className="w-1/5 pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium "
+                        scope="col"
+                      >
                         OPENING QTY
                       </th>
-                      <th className="w-1/5 pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium " scope="col">
+                      <th
+                        className="w-1/5 pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium "
+                        scope="col"
+                      >
                         CLOSING DIP
                       </th>
-                      <th className="w-1/5 pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium" scope="col">
+                      <th
+                        className="w-1/5 pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium"
+                        scope="col"
+                      >
                         CLOSING QTY
                       </th>
-                      <th className="pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium " scope="col">
+                      <th
+                        className="pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium "
+                        scope="col"
+                      >
                         PRODUCT
                       </th>
                       {type === EMeters.EDIT && (
-                        <th className="pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium " scope="col">
+                        <th
+                          className="pl-2 pr-2 fs-15 py-3   bg-blue-500  text-left text-xs font-medium "
+                          scope="col"
+                        >
                           Action
                         </th>
                       )}
@@ -337,7 +361,9 @@ const Dip = () => {
                                 value={dateEntered}
                               />
                             </td>
-                            <td className="pt-3 pb-3  pl-2 pr-1">{ele.tankNumber}</td>
+                            <td className="pt-3 pb-3  pl-2 pr-1">
+                              {ele.tankNumber}
+                            </td>
                             <td className="pt-3 pb-3  pl-2 pr-1" type="text">
                               <input
                                 type="text"
@@ -407,16 +433,15 @@ const Dip = () => {
                             {type === EMeters.EDIT && (
                               <td className="pt-3 pb-3  pl-2 pr-1">
                                 <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 flex items-center rounded"
-                 
+                                  className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 flex items-center rounded"
                                   style={{
                                     border: "1px solid",
                                     padding: "5pxs",
                                   }}
                                   onClick={() => updateSingleHandler(ele)}
                                 >
-                                   <AiFillSave className="mr-2 " />
-                    <span>Save</span>
+                                  <AiFillSave className="mr-2 " />
+                                  <span>Save</span>
                                 </button>
                               </td>
                             )}
@@ -429,7 +454,6 @@ const Dip = () => {
                   </tbody>
                 </table>
                 <div className="flex justify-between mt-4">
-
                   <div className="flex">
                     {type === EMeters.ADD || type === EMeters.EDIT ? null : (
                       <button
@@ -447,17 +471,17 @@ const Dip = () => {
                         onClick={save}
                         className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 flex items-center rounded"
                       >
-                     <AiFillSave className="mr-2 " />
-                    <span>Save</span>
+                        <AiFillSave className="mr-2 " />
+                        <span>Save</span>
                       </button>
                     )}
-                    {isVisible &&  type !== EMeters.EDIT && (
+                    {isVisible && type !== EMeters.EDIT && (
                       <button
                         className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 flex items-center rounded"
                         onClick={edit}
                       >
                         <AiFillEdit className="mr-2 mt-1" />
-                        
+
                         <span>Edit</span>
                       </button>
                     )}
@@ -467,8 +491,8 @@ const Dip = () => {
                         className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 flex items-center rounded"
                         onClick={deleteMeterHandler}
                       >
-                      <AiFillDelete className="mr-2 " />
-                        
+                        <AiFillDelete className="mr-2 " />
+
                         <span>Delete</span>
                       </button>
                     )}
@@ -477,42 +501,42 @@ const Dip = () => {
                       onClick={clearStates}
                       className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 flex items-center rounded"
                     >
-                        <BiExit className="mr-2 " />
+                      <BiExit className="mr-2 " />
                       {type === EMeters.EDIT ? "Done" : "Exit"}
                     </button>
                   </div>
-{isVisible && (
-                  <div>
-                    <button
-                      onClick={orderByAsc}
-                      className="bg-blue-500 hover:bg-blue-700 text-white mt-3 py-1 px-4 rounded"
-                    >
-                      <img src={`./img/first.png`} alt="" />
-                    </button>
-                    {typeLast === "LAST" && (
+                  {isVisible && (
+                    <div>
                       <button
-                        onClick={onePreDate}
+                        onClick={orderByAsc}
+                        className="bg-blue-500 hover:bg-blue-700 text-white mt-3 py-1 px-4 rounded"
+                      >
+                        <img src={`./img/first.png`} alt="" />
+                      </button>
+                      {typeLast === "LAST" && (
+                        <button
+                          onClick={onePreDate}
+                          className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded"
+                        >
+                          <img src={`./img/previous.png`} alt="" />
+                        </button>
+                      )}
+                      {typeLast === "LAST" && (
+                        <button
+                          onClick={oneNextDate}
+                          className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded"
+                        >
+                          <img src={`./img/next.png`} alt="" />
+                        </button>
+                      )}
+                      <button
+                        onClick={orderByDesc}
                         className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded"
                       >
-                        <img src={`./img/previous.png`} alt="" />
+                        <img src={`./img/latest.png`} alt="" />
                       </button>
-                    )}
-                    {typeLast === "LAST" && (
-                      <button
-                        onClick={oneNextDate}
-                        className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded"
-                      >
-                        <img src={`./img/next.png`} alt="" />
-                      </button>
-                    )}
-                    <button
-                      onClick={orderByDesc}
-                      className="bg-blue-500 hover:bg-blue-700 text-white mt-3 ml-3 py-1 px-4 rounded"
-                    >
-                      <img src={`./img/latest.png`} alt="" />
-                    </button>
-                  </div>
-)}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

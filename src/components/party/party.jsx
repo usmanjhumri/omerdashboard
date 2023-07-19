@@ -51,7 +51,7 @@ const Party = () => {
     });
   };
 
-    console.log(state, "Vall");
+  console.log(state, "Vall");
 
   const onChangeText = (e, object) => {
     if (object) {
@@ -81,10 +81,9 @@ const Party = () => {
     }
     if (!state.generalLedgerCode || !state.description) {
       return message.error(
-        `Please type ${
-          !state.generalLedgerCode
-            ? "Account Number"
-            : !state.description
+        `Please type ${!state.generalLedgerCode
+          ? "Account Number"
+          : !state.description
             ? "Description"
             : ""
         }`
@@ -133,10 +132,9 @@ const Party = () => {
       }
       if (!state.generalLedgerCode || !state.description) {
         return message.error(
-          `Please type ${
-            !state.generalLedgerCode
-              ? "Account Number"
-              : !state.description
+          `Please type ${!state.generalLedgerCode
+            ? "Account Number"
+            : !state.description
               ? "Description"
               : ""
           }`
@@ -226,15 +224,15 @@ const Party = () => {
     getAllData();
 
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) 
+  }, [])
 
   console.log(state, "state");
   return (
     <>
       <div className="flex  bg-black main">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="h-full  flex flex-col content-center  w-full">
-          <Header />
+          {/* <Header /> */}
           <div className="flex justify-center">
             <div className="meterTableMain flex flex-col justify-items-center justify-center  ml-10 mt-5 mr-10">
               <div className="bg-blue-500 headingBox flex justify-center">
@@ -349,7 +347,7 @@ const Party = () => {
                     </div>
                     <div>
                       <label className="text-white" for="fname">
-                      Address :
+                        Address :
                       </label>
                       <input
                         type="text"
@@ -358,8 +356,8 @@ const Party = () => {
                         onChange={onChangeText}
                         className="text-black inpTxt p-2 h-8 ml-3 mb-3"
                       />
-                       <label className="text-white" for="fname">
-                      Phone :
+                      <label className="text-white" for="fname">
+                        Phone :
                       </label>
                       <input
                         type="text"
@@ -402,7 +400,7 @@ const Party = () => {
                       </Select>
                     </div>
                     <div>
-                    <label className="text-white" for="fname">
+                      <label className="text-white" for="fname">
                         Bill Time :
                       </label>
                       <Select
@@ -419,7 +417,7 @@ const Party = () => {
                           Monthly
                         </Option>
                         <Option value={"Fortnightly"} name="closed">
-                        Fortnightly
+                          Fortnightly
                         </Option>
                       </Select>
                       <label className="text-white" for="fname">
@@ -436,69 +434,69 @@ const Party = () => {
                         }
                       >
                         <Option value={"Customer"} name="closed">
-                        Customer
+                          Customer
                         </Option>
                         <Option value={"Card"} name="closed">
-                        Card
+                          Card
                         </Option>
                         <Option value={"Supplier"} name="closed">
-                        Supplier
+                          Supplier
                         </Option>
                         <Option value={"Miscellaneous"} name="closed">
-                        Miscellaneous
+                          Miscellaneous
                         </Option>
                       </Select>
                     </div>
                     <div>
-                    <label className="text-white" for="fname">
+                      <label className="text-white" for="fname">
                         GL Code :
                       </label>
                       <Select
-                    showSearch
-                    className="ml-3"
-                    placeholder="Credit GL Code"
-                    optionFilterProp="children"
-                    value={state.glCode || "Credit GL Code"}
-                    onChange={(e) => {
-                      const lCode = state.ledgerCodes.find(
-                        (el) => el.generalLedgerCode === e
-                      );
-                      setState({
-                        ...state,
-                        glCode: e,
-                        glDescription: lCode.description,
-                      });
-                    }}
-                  >
-                    {state.ledgerCodes.map((el) => (
-                      <Option value={el.generalLedgerCode}>
-                        {el.generalLedgerCode}
-                      </Option>
-                    ))}
-                  </Select>
-                  <Select
-                    showSearch
-                    className="ml-3"
-                    placeholder="GL Description"
-                    optionFilterProp="children"
-                    value={state.glDescription || "GL Description "}
-                    onChange={(e) => {
-                      const lCode = state.ledgerCodes.find(
-                        (el) => el.generalLedgerCode === e
-                      );
-                      setState({
-                        ...state,
-                        glCode: e,
-                        glDescription: lCode.description,
-                      });
-                    }}
-                  >
-                    {state.ledgerCodes.map((el) => (
-                      <Option value={el.generalLedgerCode}>
-                        {el.description}
-                      </Option>
-                    ))}
-                  </Select>
+                        showSearch
+                        className="ml-3"
+                        placeholder="Credit GL Code"
+                        optionFilterProp="children"
+                        value={state.glCode || "Credit GL Code"}
+                        onChange={(e) => {
+                          const lCode = state.ledgerCodes.find(
+                            (el) => el.generalLedgerCode === e
+                          );
+                          setState({
+                            ...state,
+                            glCode: e,
+                            glDescription: lCode.description,
+                          });
+                        }}
+                      >
+                        {state.ledgerCodes.map((el) => (
+                          <Option value={el.generalLedgerCode}>
+                            {el.generalLedgerCode}
+                          </Option>
+                        ))}
+                      </Select>
+                      <Select
+                        showSearch
+                        className="ml-3"
+                        placeholder="GL Description"
+                        optionFilterProp="children"
+                        value={state.glDescription || "GL Description "}
+                        onChange={(e) => {
+                          const lCode = state.ledgerCodes.find(
+                            (el) => el.generalLedgerCode === e
+                          );
+                          setState({
+                            ...state,
+                            glCode: e,
+                            glDescription: lCode.description,
+                          });
+                        }}
+                      >
+                        {state.ledgerCodes.map((el) => (
+                          <Option value={el.generalLedgerCode}>
+                            {el.description}
+                          </Option>
+                        ))}
+                      </Select>
                     </div>
                     <div>
                       <label className="text-white" for="fname">

@@ -57,17 +57,17 @@ const Meter = () => {
     const sum =
       name === "meterStarting"
         ? Number(currentObj.meterEnding || 0) -
-          Number(value) -
-          Number(currentObj.meterCheck || 0)
+        Number(value) -
+        Number(currentObj.meterCheck || 0)
         : name === "meterEnding"
-        ? Number(value) -
+          ? Number(value) -
           Number(currentObj.meterStarting || 0) -
           Number(currentObj.meterCheck || 0)
-        : name === "meterCheck"
-        ? Number(currentObj.meterEnding || 0) -
-          Number(currentObj.meterStarting || 0) -
-          Number(value)
-        : 0;
+          : name === "meterCheck"
+            ? Number(currentObj.meterEnding || 0) -
+            Number(currentObj.meterStarting || 0) -
+            Number(value)
+            : 0;
 
     const findIndex = addData[i];
     const modifiedObject = {
@@ -87,8 +87,8 @@ const Meter = () => {
       name === "electronicStarting"
         ? Number(currentObj.electronicEnding || 0) - Number(value)
         : name === "electronicEnding"
-        ? Number(value) - Number(currentObj.electronicStarting || 0)
-        : 0;
+          ? Number(value) - Number(currentObj.electronicStarting || 0)
+          : 0;
 
     const findIndex = addData[i];
     const modifiedObject = {
@@ -378,9 +378,9 @@ const Meter = () => {
 
   return (
     <div className="flex  bg-black main ">
-      <SideBar />
+      {/* <SideBar /> */}
       <div className="h-full  flex flex-col content-center  w-full">
-        <Header />
+        {/* <Header /> */}
         <div className="meterTableMain ml-10 mt-6o mr-10">
           <h3 className="bg-blue-500 text-white tableHeading pl-10">
             METER READINGS

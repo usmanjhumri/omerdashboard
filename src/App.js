@@ -27,6 +27,7 @@ import Register from "./components/User/registerUser";
 import jwt_decode from "jwt-decode";
 import Nozel from "./components/nozel/nozel";
 import Tank from "./components/tank/tank";
+import SideBar from "./components/sidebar/sideBar";
 function App() {
   // const { loading } = useUserContext();
 
@@ -72,30 +73,84 @@ function AppRoutes() {
             {/* <Route path="/main" element={<Main />}></Route> */}
             <Route
               path="/meter"
-              element={user.role === "admin" ? <Meter /> : <Main />}
+              element={
+                <SideBar
+                  childComponent={user.role === "admin" ? <Meter /> : <Main />}
+                />
+              }
             ></Route>
-            <Route path="/dip" element={<Dip />}></Route>
-            <Route path="/purchase" element={<Purchase />}></Route>
-            <Route path="/receipts" element={<Receipts />}></Route>
-            <Route path="/payment" element={<Payment />}></Route>
-            <Route path="/journalVoucher" element={<JV />}></Route>
-            <Route path="/lubeSale" element={<LubeSale />}></Route>
-            <Route path="/openingStock" element={<OpeningStock />}></Route>
-            <Route path="/report" element={<Report />}></Route>
-            <Route path="/nozel" element={<Nozel />}></Route>
-            <Route path="/tank" element={<Tank />}></Route>
-            <Route path="/chartOfAccount" element={<ChartOfAccount />}></Route>
-            <Route path="/party" element={<Party />}></Route>
-            <Route path="/registerUser" element={<Register />}></Route>
+            <Route
+              path="/dip"
+              element={<SideBar childComponent={<Dip />} />}
+            ></Route>
+            <Route
+              path="/purchase"
+              element={<SideBar childComponent={<Purchase />} />}
+            ></Route>
+            <Route
+              path="/receipts"
+              element={<SideBar childComponent={<Receipts />} />}
+            ></Route>
+            <Route
+              path="/payment"
+              element={<SideBar childComponent={<Payment />} />}
+            ></Route>
+            <Route
+              path="/journalVoucher"
+              element={<SideBar childComponent={<JV />} />}
+            ></Route>
+            <Route
+              path="/lubeSale"
+              element={<SideBar childComponent={<LubeSale />} />}
+            ></Route>
+            <Route
+              path="/openingStock"
+              element={<SideBar childComponent={<OpeningStock />} />}
+            ></Route>
+            <Route
+              path="/report"
+              element={<SideBar childComponent={<Report />} />}
+            ></Route>
+            <Route
+              path="/nozel"
+              element={<SideBar childComponent={<Nozel />} />}
+            ></Route>
+            <Route
+              path="/tank"
+              element={<SideBar childComponent={<Tank />} />}
+            ></Route>
+            <Route
+              path="/chartOfAccount"
+              element={<SideBar childComponent={<ChartOfAccount />} />}
+            ></Route>
+            <Route
+              path="/party"
+              element={<SideBar childComponent={<Party />} />}
+            ></Route>
+            <Route
+              path="/registerUser"
+              element={<SideBar childComponent={<Register />} />}
+            ></Route>
 
             {/* <Route path="/stockBalence" element={<Example />}></Route> */}
 
-            <Route path="*" element={<Navigate to="/meter" replace />} />
+            <Route
+              path="*"
+              element={
+                <SideBar childComponent={<Navigate to="/meter" replace />} />
+              }
+            />
           </Fragment>
         ) : (
           <Fragment>
-            <Route path="/" element={<Login />}></Route>
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route
+              path="/"
+              element={<SideBar childComponent={<Login />} />}
+            ></Route>
+            <Route
+              path="*"
+              element={<SideBar childComponent={<Navigate to="/" replace />} />}
+            />
           </Fragment>
         )}
       </Routes>

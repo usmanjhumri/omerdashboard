@@ -171,7 +171,7 @@ const LubeSale = () => {
 
   const getItemsaleRate = async () => {
     const data = await getItemRate(state.code, access_token);
-    console.log(data,"saleRate")
+    console.log(data, "saleRate")
     if (data.success) {
       setState({
         ...state,
@@ -220,18 +220,17 @@ const LubeSale = () => {
       state.quantity > remainingQuantity
     ) {
       return message.error(
-        `${
-          !state.quantity
-            ? "add minimum 1 quantity"
-            : !state.saleRate
+        `${!state.quantity
+          ? "add minimum 1 quantity"
+          : !state.saleRate
             ? "Sale Rate"
             : state.quantity > remainingQuantity
-            ? "No balance available for sale"
-            : !state.code
-            ? "Please type Item"
-            : Number(state.quantity) === 0
-            ? "Quantity must be greater then 0"
-            : ""
+              ? "No balance available for sale"
+              : !state.code
+                ? "Please type Item"
+                : Number(state.quantity) === 0
+                  ? "Quantity must be greater then 0"
+                  : ""
         }`
       );
     } else {
@@ -253,18 +252,17 @@ const LubeSale = () => {
         state.quantity > remainingQuantity
       ) {
         return message.error(
-          `${
-            !state.quantity
-              ? "add minimum 1 quantity"
-              : !state.saleRate
+          `${!state.quantity
+            ? "add minimum 1 quantity"
+            : !state.saleRate
               ? "Sale Rate"
               : state.quantity > remainingQuantity
-              ? "No balance available for sale"
-              : !state.code
-              ? "Please type Item"
-              : Number(state.quantity) === 0
-              ? "Quantity must be greater then 0"
-              : ""
+                ? "No balance available for sale"
+                : !state.code
+                  ? "Please type Item"
+                  : Number(state.quantity) === 0
+                    ? "Quantity must be greater then 0"
+                    : ""
           }`
         );
       }
@@ -278,18 +276,17 @@ const LubeSale = () => {
         state.quantity > remainingQuantity
       ) {
         return message.error(
-          `${
-            !state.quantity
-              ? "add minimum 1 quantity"
-              : !state.saleRate
+          `${!state.quantity
+            ? "add minimum 1 quantity"
+            : !state.saleRate
               ? "Sale Rate"
               : state.quantity > remainingQuantity
-              ? "No balance available for sale"
-              : !state.code
-              ? "Please type Item"
-              : Number(state.quantity) === 0
-              ? "Quantity must be greater then 0"
-              : ""
+                ? "No balance available for sale"
+                : !state.code
+                  ? "Please type Item"
+                  : Number(state.quantity) === 0
+                    ? "Quantity must be greater then 0"
+                    : ""
           }`
         );
       }
@@ -622,9 +619,9 @@ const LubeSale = () => {
   };
   return (
     <div className="flex  bg-black main">
-      <SideBar />
+      {/* <SideBar /> */}
       <div className="h-full  flex flex-col content-center  w-full">
-        <Header />
+        {/* <Header /> */}
         <div className="meterTableMain ml-10 mt-5 mr-10">
           {contextHolder}
           <div className="bg-blue-500 headingBox flex justify-between">

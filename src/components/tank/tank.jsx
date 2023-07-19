@@ -61,10 +61,9 @@ const Tank = () => {
   const saveTank = async (e) => {
     if (!state.itemCode || !state.tankNumber) {
       return message.error(
-        `Please type ${
-          !state.itemCode
-            ? "Item Number"
-            : !state.tankNumber
+        `Please type ${!state.itemCode
+          ? "Item Number"
+          : !state.tankNumber
             ? "Tank Number"
             : ""
         }`
@@ -109,10 +108,9 @@ const Tank = () => {
     if (type === "EDIT") {
       if (!state.itemCode || !state.tankNumber) {
         return message.error(
-          `Please type ${
-            !state.itemCode
-              ? "Item Number"
-              : !state.tankNumber
+          `Please type ${!state.itemCode
+            ? "Item Number"
+            : !state.tankNumber
               ? "Tank Number"
               : ""
           }`
@@ -136,7 +134,7 @@ const Tank = () => {
         message.error(results.message);
       }
     } else {
-      if(!state.tankNumber) return message.error("Please Select Tank")
+      if (!state.tankNumber) return message.error("Please Select Tank")
       modal.confirm({
         title: `Confirm`,
         content: "Are you sure you want to delete this Tank?",
@@ -206,9 +204,9 @@ const Tank = () => {
   return (
     <>
       <div className="flex  bg-black main">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="h-full  flex flex-col content-center  w-full">
-          <Header />
+          {/* <Header /> */}
           <div className="flex justify-center">
             <div className="meterTableMain flex flex-col justify-items-center justify-center w-1/2 ml-10 mt-5 mr-10">
               <div className="bg-blue-500 headingBox flex justify-center">
@@ -235,7 +233,7 @@ const Tank = () => {
                               (el) => el.tankNumber === e
                             );
                             console.log("e", tankInfo);
-                            if(tankInfo.closed === true){
+                            if (tankInfo.closed === true) {
                               setState({
                                 ...state,
                                 tankNumber: e,
@@ -245,7 +243,7 @@ const Tank = () => {
                                 printOrder: tankInfo.printOrder,
                               });
                             }
-                            else{
+                            else {
                               setState({
                                 ...state,
                                 tankNumber: e,
@@ -255,7 +253,7 @@ const Tank = () => {
                                 printOrder: tankInfo.printOrder,
                               });
                             }
-                            
+
                           }}
                         >
                           {state.tanks.map((el) => (
@@ -336,7 +334,7 @@ const Tank = () => {
                       />
                     </div>
                     <div>
-                    <label className="text-white" for="fname">
+                      <label className="text-white" for="fname">
                         Closed:
                       </label>
                       <Select

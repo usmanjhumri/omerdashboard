@@ -63,10 +63,9 @@ const ChartOfAccount = () => {
     }
     if (!state.generalLedgerCode || !state.description) {
       return message.error(
-        `Please type ${
-          !state.generalLedgerCode
-            ? "Account Number"
-            : !state.description
+        `Please type ${!state.generalLedgerCode
+          ? "Account Number"
+          : !state.description
             ? "Description"
             : ""
         }`
@@ -115,10 +114,9 @@ const ChartOfAccount = () => {
       }
       if (!state.generalLedgerCode || !state.description) {
         return message.error(
-          `Please type ${
-            !state.generalLedgerCode
-              ? "Account Number"
-              : !state.description
+          `Please type ${!state.generalLedgerCode
+            ? "Account Number"
+            : !state.description
               ? "Description"
               : ""
           }`
@@ -197,9 +195,9 @@ const ChartOfAccount = () => {
   return (
     <>
       <div className="flex  bg-black main">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="h-full  flex flex-col content-center  w-full">
-          <Header />
+          {/* <Header /> */}
           <div className="flex justify-center">
             <div className="meterTableMain flex flex-col justify-items-center justify-center w-1/2 ml-10 mt-5 mr-10">
               <div className="bg-blue-500 headingBox flex justify-center">
